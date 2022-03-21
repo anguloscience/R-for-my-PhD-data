@@ -1,0 +1,37 @@
+setwd("") #carpeta donde esta el Dataset
+getwd()
+
+PWscores<-read.csv(file.choose())
+mydata<-as.data.frame(PWscores) 
+nPW<-ncol(mydata) 
+mydata$Group<-as.factor(mydata$Group)
+k = 38
+PWS = 2*k - 4
+
+
+library(ggplot2)
+library(MASS)
+
+for (i in 1:PWS){
+  mytitle<-paste("PW",(i), sep = "")
+  mypath<-file.path(" ",paste("PW","_",i, ".jpeg", sep = "")) #folder where I want to save the plots
+  jpeg(filename=mypath, quality = 90, width = 520, height = 480, res=NA)
+  ymin<-min(mydata[ ,i])
+  ymax<-max(mydata[ ,i])
+  pw_plot<- ggplot(data = mydata, aes(x=log(CS), y= mydata[ ,i]/10^4)) +
+    geom_smooth(linetype = "dashed", size = 0.8, method = "lm", colour = 'black', se = FALSE, span = 1) +
+    geom_smooth(linetype = "solid", size = 0.8,colour = "azure4", method = "loess", se = FALSE, span = 1) +
+    geom_point(aes(shape=Species,colour = Species), size=1.9) +
+    scale_y_continuous(breaks = pretty(c(ymin,0, ymax)))+
+    facet_grid(Group~Stage, scales = 'free_x') +
+    #scale_color_manual(name= 'Method', breaks=c('Lm', 'Loess'),
+                       #values=c('Lm'='black', 'Loess'= 'azure4'))+
+    #scale_color_discrete(name = 'Species') +
+    theme(legend.position = "right", panel.grid.major = element_line(size = 0.3, linetype = 'solid',
+          colour = "white"), panel.grid.minor = element_line(size = 0.3, linetype = 'solid',
+           colour = "white")) +
+    ggtitle(mytitle) + xlab("LnCS") + ylab("PW value")
+  print(pw_plot)
+  dev.off()
+}
+

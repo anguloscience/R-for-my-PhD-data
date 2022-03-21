@@ -1,4 +1,4 @@
-setwd("D:/OneDrive - Universidad EAFIT/Doctorado/Artículos/Angulo et al/2021 Ontogeny/Data analyses/Analyses_Cc_subspp/1.Analyses-V3- k38n159/PWplots_N159") #carpeta donde esté el Dataset
+setwd(" ") #carpeta donde esté el Dataset
 getwd()
 
 PWscores<-read.csv(file.choose())
@@ -14,7 +14,7 @@ library(MASS)
 
 for (i in 1:PWS){
   mytitle<-paste("PW",(i), sep = "")
-  mypath<-file.path("D:/OneDrive - Universidad EAFIT/Doctorado/Artículos/Angulo et al/2021 Ontogeny/Data analyses/Analyses_Cc_subspp/1.Analyses-V3- k38n159/PWplots_N159/ensayo script",paste("PW","_",i, ".jpeg", sep = ""))
+  mypath<-file.path(" // folder path to save the output plots // ",paste("PW","_",i, ".jpeg", sep = ""))
   jpeg(filename=mypath, quality = 90, width = 520, height = 480, res=NA)
   ymin<-min(mydata[ ,i])
   ymax<-max(mydata[ ,i])

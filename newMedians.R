@@ -6,15 +6,15 @@ lapply(.packs, require, character.only=T)
 
 
 
-save.dir='G:/Roberto-Angulo/MALPACA/caimans/outputs/2022-08-31' 
+save.dir='DIR ' 
 ##enter your directory to download the MALPACA data sample or the DIR where you are working
 
 setwd(save.dir)
 
-  MAL_outDir_git<- paste(save.dir, "robertoCT/", sep="/") 
+  MAL_outDir_git<- paste(save.dir, " /", sep="/") 
   ##Set up MALPACA output path, the one where you got the folders individual/median .fcsv from the 3Dslicer
   
-  templates_path_git<- 'G:/Roberto-Angulo/MALPACA/caimans/markups_templates/v2' 
+  templates_path_git<- 'DIR ' 
   ##Set up the folder where the templates landmarks are
   
   LMs <-read.malpaca.estimates(MALPACA_outputDir = MAL_outDir_git, templates_Dir = templates_path_git)
